@@ -17,7 +17,7 @@ def ping(target, debug):
         r = requests.get(target)
         if(debug == True):
             print("Status Code: " + str(r.status_code))
-        time.sleep(random.randint(180,300)) #alternate ping time between 3 and 5 minutes
+        time.sleep(random.randint(60,120)) #alternate ping time between 3 and 5 minutes
 def awake(target, debug=False):  
     log = logging.getLogger('werkzeug')
     log.disabled = True
