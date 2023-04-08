@@ -6,6 +6,8 @@ from discord.ext import commands, tasks
 import server_
 import os
 from messageFolder.messages.helpCommand import onHelp
+from messageFolder.messages.EliseGenderStory import EliseGenderStory
+from messageFolder.messages.Socials import Socials
 
 
 activity = discord.Activity(type=discord.ActivityType.watching,
@@ -15,16 +17,11 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents, activity=activity)
 tree = app_commands.CommandTree(client)
 GUILD_ID = 699557641818734634
-
-@tasks.loop(minutes=5)
-async def keep_alive():
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,
-                            name="The Arcades in Elise her sekai"))
   
 @client.event
 async def on_ready():
     await tree.sync(guild=discord.Object(id=699557641818734634))
-    keep_alive.start()
+    #keep_alive.start()
     print("I have launched with {0.user}".format(client))
 
 
@@ -41,6 +38,15 @@ async def hello_command(interaction):
 async def help_command(interaction):
   user = interaction.user
   await onHelp(user, interaction)
+  
+@tree.command(name = "egs", description = "Wanna know more about the EGS series on youtube or known as Elise Gender story?", guild=discord.Object(id=GUILD_ID))
+async def EGS(interaction):
+  await EliseGenderStory(interaction)
+
+@tree.command(name = "socials", description = "Want to know what the socials of elise are? I can find them for you. at least the offical ones", guild=discord.Object(id=GUILD_ID))
+async def socials(interaction):
+  user = interaction.user
+  await Socials(user, interaction)
 
 @client.event
 async def on_message(message):
@@ -51,17 +57,10 @@ async def on_message(message):
         await message.channel.send('Hello!')
 
 
-server_.awake("https://SlashDiscordbot.juju125.repl.co", False)
+server_.keep_alive()
 try:
     client.run(my_secret)
-except discord.HTTPException as e:
-  if e.status == 429:
-    print("The Discord servers denied the connection for making too many requests")
-    print("Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests")
+except:
     print("at except")
-    os.system("kill 1")
-    client.run(my_secret)
-  else:
-    print(e)
     os.system("kill 1")
     client.run(my_secret)
