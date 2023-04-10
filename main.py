@@ -8,6 +8,7 @@ import os
 from messageFolder.messages.helpCommand import onHelp
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
+from messageFolder.messages.VocaloidPuns import generatePun
 
 
 activity = discord.Activity(type=discord.ActivityType.watching,
@@ -47,6 +48,19 @@ async def EGS(interaction):
 async def socials(interaction):
   user = interaction.user
   await Socials(user, interaction)
+
+@tree.command(name = "summer_idol", description = "Elise her favorite chart and see why", guild=discord.Object(id=GUILD_ID))
+async def summer_idol(interaction):
+  await interaction.response.send_message("https://cdn.discordapp.com/attachments/699557641818734638/1094899315580862534/7hmp4m.png")
+  
+@tree.command(name = "108", description = "Wanna know some secrets about your favourite project diva game. Its what i heared from Elise", guild=discord.Object(id=GUILD_ID))
+async def oneoeight(interaction):
+  user = interaction.user
+  await interaction.response.send_message(f"Here you go {user.mention}! https://108memo.jp/en/#m")
+
+@tree.command(name = "vocaloid_pun", description = "Il give you a random vocaloid pun from either here in the sekais or from Elise.", guild=discord.Object(id=GUILD_ID))
+async def vocaloidPun(interaction):
+  await generatePun(interaction)
 
 @client.event
 async def on_message(message):
