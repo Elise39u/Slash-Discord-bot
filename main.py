@@ -9,6 +9,8 @@ from messageFolder.messages.helpCommand import onHelp
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
+from messageFolder.messages.UserAvatar import getUserAvatar
+
 
 
 activity = discord.Activity(type=discord.ActivityType.watching,
@@ -62,6 +64,19 @@ async def oneoeight(interaction):
 async def vocaloidPun(interaction):
   await generatePun(interaction)
 
+@tree.command(name = "avatar", description = "*Coming Soon Avatar command*", guild=discord.Object(id=GUILD_ID))
+async def avatar(interaction, user: discord.Member = None):
+  user = user or interaction.user
+  avatar = user.avatar 
+  
+  if interaction.guild:
+        # If we're in a guild, try to get the guild-specific avatar
+        guild_avatar = user.guild_avatar
+        if guild_avatar:
+            avatar = guild_avatar
+          
+  await getUserAvatar(interaction, avatar, user)
+  
 @client.event
 async def on_message(message):
     if message.author == client.user:
