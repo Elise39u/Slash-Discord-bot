@@ -10,6 +10,7 @@ from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
 from messageFolder.messages.UserAvatar import getUserAvatar
+from messageFolder.messages.RoleMenu import AddRole
 
 
 
@@ -23,9 +24,11 @@ GUILD_ID = 699557641818734634
   
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=699557641818734634))
-    #keep_alive.start()
-    print("I have launched with {0.user}".format(client))
+  await tree.sync(guild=discord.Object(id=699557641818734634))
+  channel = client.get_channel(822837640872067082)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.2.1 has arrived", color=65463)
+  await setup_roles()
+  await channel.send(embed=AliveEmbed)
 
 
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
@@ -64,7 +67,7 @@ async def oneoeight(interaction):
 async def vocaloidPun(interaction):
   await generatePun(interaction)
 
-@tree.command(name = "avatar", description = "*Coming Soon Avatar command*", guild=discord.Object(id=GUILD_ID))
+@tree.command(name = "avatar", description = "Gain a profile picture of someone who is visting the arcades", guild=discord.Object(id=GUILD_ID))
 async def avatar(interaction, user: discord.Member = None):
   user = user or interaction.user
   avatar = user.avatar 
@@ -76,7 +79,22 @@ async def avatar(interaction, user: discord.Member = None):
             avatar = guild_avatar
           
   await getUserAvatar(interaction, avatar, user)
-  
+
+@tree.command(name = "sekairoles", description = "Want a fancy new Sekai role? Based on the sekais of project sekai", guild=discord.Object(id=GUILD_ID))
+async def addRole(interaction, role: discord.Role): 
+  if role: 
+    member = interaction.user
+    await AddRole(member, interaction, role)
+
+async def setup_roles():
+  role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
+  for role_item in role_names:
+    if role_item not in [r.name for r in client.guilds[0].roles]:
+      await client.guilds[0].create_role(
+        name=role_item,
+        hoist=True
+      )
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
