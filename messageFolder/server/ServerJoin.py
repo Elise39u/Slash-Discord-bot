@@ -1,0 +1,12 @@
+import random
+from ..helpers import EmbedBuilder
+
+embedWelcomeURLS = ["https://i.kym-cdn.com/photos/images/original/001/236/970/0f1.gif", "https://cdn.discordapp.com/attachments/757611689003974779/861329033756672030/LTWB_Micrystal.gif", "https://cdn.discordapp.com/attachments/757611689003974779/861329293066108936/2ffuym.gif", "https://cdn.discordapp.com/attachments/757611689003974779/861329462636183602/ezgif.com-gif-maker_3.gif" ,"https://cdn.discordapp.com/attachments/757611689003974779/861329538398552084/ezgif-3-f1b581708e09.gif", "https://media.tenor.com/images/7452b9709e58ee148807ca1637ea308d/tenor.gif", "https://cdn.discordapp.com/attachments/709057115159003156/999650609621897328/gif_5.gif", "https://cdn.discordapp.com/attachments/709057115159003156/948212388925157436/unknown.png", "https://cdn.discordapp.com/attachments/709057115159003156/1096071817199878176/Sepihm_in_the_ring.gif", "https://cdn.discordapp.com/attachments/709057115159003156/1096071815903846442/Mannequin.gif", "https://cdn.discordapp.com/attachments/709057115159003156/1096071814494552135/ezgif-3-025a1bb57f42.gif", "https://cdn.discordapp.com/attachments/709057115159003156/1096071814075134092/ezgif.com-optimize.gif", "https://cdn.discordapp.com/attachments/709057115159003156/1096071815392145559/ChristmasGif.gif", "https://cdn.discordapp.com/attachments/709057115159003156/1096071990965698601/tenor_3.gif"]
+imageUrl = random.choice(embedWelcomeURLS)
+
+async def onMemberJoin(member, client):
+  channel = client.get_channel(797789187910664193)
+  role = member.guild.get_role(699572966551322635)
+  await channel.send("{0.mention} Welcome to Elise Her Arcade Sekai. Also know as the Gamer Girl Sekai. I hope you have a pleasent stay".format(member))
+  await EmbedBuilder.BuildEmbed(None, "🎀 Welcome to the Arcade garden in the Sekai🎀", "Before i start, i do have to say a few things. 💖 \n <#703637751274143854> <-- Channel where you can find the rules of the server 🎀 \n <#797792369416208386>  <-- For some information on the server 🎀 \n <#699557641818734638> <-- Main  chat 🎀 \n  <#709050194662260797> <-- channel for some roles  🎀 \n <#962632709405032458> <-- Introduction about me if your interested 🎀💙", imageUrl, 6331378, "🎀 Welcome to the gamer girl sekai 🎀", channel, None)
+  await member.add_roles(role)

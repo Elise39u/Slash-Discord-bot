@@ -1,16 +1,19 @@
 # This code is based on the following example:
+#https://gist.github.com/EvieePy/7822af90858ef65012ea500bcecf1612
 # https://discordpy.readthedocs.io/en/stable/quickstart.html#a-minimal-bot
 import discord
 from discord import app_commands
 from discord.ext import commands, tasks
 import server_
 import os
-from messageFolder.messages.helpCommand import onHelp
+from messageFolder.messages.HelpCommand import onHelp
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
 from messageFolder.messages.UserAvatar import getUserAvatar
 from messageFolder.messages.RoleMenu import AddRole
+from messageFolder.server.ServerLeave import onMemberLeave
+from messageFolder.server.ServerJoin import onMemberJoin
 
 
 
@@ -26,7 +29,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.2.2 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.2.7a has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -102,6 +105,17 @@ async def on_message(message):
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
+
+
+#Check if a member has left or joined the guild
+@client.event
+async def on_member_join(member):
+    await onMemberJoin(member, client)
+
+
+@client.event
+async def on_member_remove(member):
+    await onMemberLeave(member, client)
 
 
 server_.keep_alive()
