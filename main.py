@@ -12,6 +12,8 @@ from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
 from messageFolder.messages.UserAvatar import getUserAvatar
 from messageFolder.messages.RoleMenu import AddRole
+from messageFolder.messages.OwO import text_to_owo
+from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 
@@ -29,9 +31,15 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.2.7a has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.3.1c has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
+
+def is_authorized(user):
+  if user.id == 203095887264743424:
+    return True
+  else:
+    return False
 
 
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
@@ -89,6 +97,16 @@ async def addRole(interaction, role: discord.Role):
     member = interaction.user
     await AddRole(member, interaction, role)
 
+@tree.command(name = "owo", description = "OwOfys your given text", guild=discord.Object(id=GUILD_ID))
+async def owoText(interaction, message: str):
+  await text_to_owo(message, interaction)
+
+@tree.command(name = "testgifs", description = "A command for Elise to test stuff with me here in the arcade", guild=discord.Object(id=GUILD_ID))
+async def gifTest(interaction):
+  meCheck = is_authorized(interaction.user)
+  if meCheck: 
+    await testGiffies(interaction)
+  
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:
