@@ -6,13 +6,14 @@ from discord import app_commands
 from discord.ext import commands, tasks
 import server_
 import os
-from messageFolder.messages.HelpCommand import onHelp
+from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
 from messageFolder.messages.UserAvatar import getUserAvatar
 from messageFolder.messages.RoleMenu import AddRole
 from messageFolder.messages.OwO import text_to_owo
+from messageFolder.messages.Choices import chooseAnswer
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -31,7 +32,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.3.1c has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.6 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -44,7 +45,7 @@ def is_authorized(user):
 
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
-  await interaction.response.send_message('Pong! Is my ping good enough or too high UwU? **{0}ms**'.format(round(client.latency, 1)))
+  await interaction.response.send_message('Pong! Is my ping good enough or too high UwU? **{0}ms**'.format(client.latency, 1))
 
 @tree.command(name = "hello", description = "Say hello to your gamer miku here in this sekai", guild=discord.Object(id=GUILD_ID))
 async def hello_command(interaction):
@@ -54,7 +55,7 @@ async def hello_command(interaction):
 @tree.command(name = "help", description = "Wanna see what my slash commands are? Use this one then", guild=discord.Object(id=GUILD_ID))
 async def help_command(interaction):
   user = interaction.user
-  await onHelp(user, interaction)
+  await helpCommand(user, interaction)
   
 @tree.command(name = "egs", description = "Wanna know more about the EGS series on youtube or known as Elise Gender story?", guild=discord.Object(id=GUILD_ID))
 async def EGS(interaction):
@@ -106,7 +107,11 @@ async def gifTest(interaction):
   meCheck = is_authorized(interaction.user)
   if meCheck: 
     await testGiffies(interaction)
-  
+
+@tree.command(name = "choice", description = "Choose between 2 options", guild=discord.Object(id=GUILD_ID))
+async def choice(interaction, choice1: str, choice2: str):
+  await chooseAnswer(interaction, choice1, choice2)
+
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:
