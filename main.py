@@ -6,7 +6,7 @@ from discord import app_commands
 from discord.ext import commands, tasks
 import server_
 import os
-from messageFolder.messages.HelpCommand import helpNew
+from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
 from messageFolder.messages.VocaloidPuns import generatePun
@@ -55,7 +55,7 @@ async def hello_command(interaction):
 @tree.command(name = "help", description = "Wanna see what my slash commands are? Use this one then", guild=discord.Object(id=GUILD_ID))
 async def help_command(interaction):
   user = interaction.user
-  await helpNew(user, interaction)
+  await helpCommand(user, interaction)
   
 @tree.command(name = "egs", description = "Wanna know more about the EGS series on youtube or known as Elise Gender story?", guild=discord.Object(id=GUILD_ID))
 async def EGS(interaction):

@@ -24,7 +24,7 @@ arcade_commands = load_Commands(os.path.join(commands_dir, 'arcadeLoreCommands.t
 booster_commands = load_Commands(os.path.join(commands_dir, 'boosterCommands.txt'))
 sub_commands = load_Commands(os.path.join(commands_dir, 'subCommands.txt'))
 
-async def helpNew(user, interaction):
+async def helpCommand(user, interaction):
   user_roles = [role.id for role in user.roles]
   added_roles = set()  # Set to keep track of added roles
   
