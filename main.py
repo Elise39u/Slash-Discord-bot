@@ -18,14 +18,6 @@ from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 
-admin_command_permissions = [
-    {
-        "id": 699558391894507620,
-        "type": 1,
-        "permission": True
-    }
-]
-
 activity = discord.Activity(type=discord.ActivityType.watching,
                             name="The Arcades")
 my_secret = os.environ['TOKEN']
@@ -38,7 +30,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.7b has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.7c has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -110,9 +102,7 @@ async def owoText(interaction, message: str):
 
 @tree.command(name = "testgifs", description = "A command for Elise to test stuff with me here in the arcade", guild=discord.Object(id=GUILD_ID))
 async def gifTest(interaction):
-  meCheck = is_authorized(interaction.user)
-  if meCheck: 
-    await testGiffies(interaction)
+  await testGiffies(interaction)
 
 @tree.command(name = "choice", description = "Choose between 2 options", guild=discord.Object(id=GUILD_ID))
 async def choice(interaction, choice1: str, choice2: str):
@@ -126,14 +116,6 @@ async def setup_roles():
         name=role_item,
         hoist=True
       )
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
 
 #Check if a member has left or joined the guild
