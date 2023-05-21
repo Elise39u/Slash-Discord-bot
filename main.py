@@ -18,7 +18,13 @@ from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 
-
+admin_command_permissions = [
+    {
+        "id": 699558391894507620,
+        "type": 1,
+        "permission": True
+    }
+]
 
 activity = discord.Activity(type=discord.ActivityType.watching,
                             name="The Arcades")
@@ -32,7 +38,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.6 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.7b has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
