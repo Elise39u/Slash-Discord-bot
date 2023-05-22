@@ -6,6 +6,7 @@ from discord import app_commands
 from discord.ext import commands, tasks
 import server_
 import os
+from moderation.updateMessage import UpdateMessage
 from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
@@ -30,7 +31,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.7c has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.8aa has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -40,6 +41,10 @@ def is_authorized(user):
   else:
     return False
 
+
+@client.event
+async def on_message_edit(beforeMessage, afterMessage):
+    await UpdateMessage(client, beforeMessage, afterMessage)
 
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
