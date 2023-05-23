@@ -7,6 +7,7 @@ from discord.ext import commands, tasks
 import server_
 import os
 from moderation.updateMessage import UpdateMessage
+from moderation.deleteMessage import DeleteMessage
 from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
@@ -19,8 +20,8 @@ from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 
-activity = discord.Activity(type=discord.ActivityType.watching,
-                            name="The Arcades")
+activity = discord.Activity(type=discord.ActivityType.playing,
+                            name="With Elise in the Arcades")
 my_secret = os.environ['TOKEN']
 intents = discord.Intents.all()
 client = discord.Client(intents=intents, activity=activity)
@@ -31,7 +32,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.8b has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.9 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -46,6 +47,13 @@ def is_authorized(user):
 async def on_message_edit(beforeMessage, afterMessage):
     await UpdateMessage(client, beforeMessage, afterMessage)
 
+@client.event
+async def on_message_delete(message):
+    if message.author == client.user:
+        return
+    else:
+        await DeleteMessage(message, client)
+      
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
   await interaction.response.send_message('Pong! Is my ping good enough or too high UwU? **{0}ms**'.format(client.latency, 1))
