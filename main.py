@@ -8,6 +8,7 @@ import server_
 import os
 from moderation.updateMessage import UpdateMessage
 from moderation.deleteMessage import DeleteMessage
+from moderation.kickUser import OnKick
 from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
@@ -32,7 +33,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.9 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.10b has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -120,6 +121,10 @@ async def gifTest(interaction):
 @tree.command(name = "choice", description = "Choose between 2 options", guild=discord.Object(id=GUILD_ID))
 async def choice(interaction, choice1: str, choice2: str):
   await chooseAnswer(interaction, choice1, choice2)
+
+@tree.command(name = "kick", description = "Kick a user from the guild", guild=discord.Object(id=GUILD_ID))
+async def kickUser(interaction, user: discord.Member, reason: str):
+  await OnKick(interaction, reason, client, user)
 
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']

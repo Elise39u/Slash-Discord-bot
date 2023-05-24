@@ -1,1 +1,1 @@
-*Coming soon*
+🎀 /Kick --> Kicks a user from the guild. Requires a User and Reason to be given along. 
