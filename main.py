@@ -20,6 +20,7 @@ from messageFolder.messages.Choices import chooseAnswer
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
+from messageFolder.messages.DadJokes import onJoke
 
 activity = discord.Activity(type=discord.ActivityType.playing,
                             name="With Elise in the Arcades")
@@ -33,7 +34,7 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.10c has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.10d has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -126,6 +127,10 @@ async def choice(interaction, choice1: str, choice2: str):
 async def kickUser(interaction, user: discord.Member, reason: str):
   await OnKick(interaction, reason, client, user)
 
+@tree.command(name = "dadjoke", description = "Wanna hear a joke :)", guild=discord.Object(id=GUILD_ID))
+async def jokeGetter(interaction):
+  await onJoke(interaction, client)
+  
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:

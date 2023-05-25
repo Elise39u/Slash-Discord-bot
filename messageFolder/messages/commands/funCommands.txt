@@ -2,3 +2,4 @@
 🎀 /Vocaloid_pun --> get a random vocaloid pun from the sekais, in here or a pun from Elise
 🎀 /OwO --> OwOfy your given text by me
 🎀 /choice --> let the bot decided for you between 2 choices. *Requires 2 options to be given*
+🎀 /dadjoke --> You wanna hear a funny joke from me?
