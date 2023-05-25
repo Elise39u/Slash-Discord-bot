@@ -23,6 +23,7 @@ fun_commands = load_Commands(os.path.join(commands_dir, 'funCommands.txt'))
 arcade_commands = load_Commands(os.path.join(commands_dir, 'arcadeLoreCommands.txt'))
 booster_commands = load_Commands(os.path.join(commands_dir, 'boosterCommands.txt'))
 sub_commands = load_Commands(os.path.join(commands_dir, 'subCommands.txt'))
+elise_commands = load_Commands(os.path.join(commands_dir, 'eliseCommands.txt'))
 
 async def helpCommand(user, interaction):
   user_roles = [role.id for role in user.roles]
@@ -40,6 +41,7 @@ async def helpCommand(user, interaction):
     helpEmbed.add_field(name="Admin commands", value=admin_commands, inline=False)
     helpEmbed.add_field(name="Booster Commands", value=booster_commands, inline=False)
     helpEmbed.add_field(name="Sub Commands", value=sub_commands, inline=False)
+    helpEmbed.add_field(name="Mommy Commands", value=elise_commands, inline=False)
     added_roles.update(["Admin", "Booster", "Sub", "Elise"])
   
   if Admin_RoleID in user_roles and "Admin" not in added_roles: 
