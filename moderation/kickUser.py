@@ -9,7 +9,7 @@ async def OnKick(interaction, message, client, user):
     user_roles = [role.name for role in user.roles]
     immuun_roles = [role_name for role_name in user_roles if role_name in allowed_roles]
     if immuun_roles:
-        role_names = '\n'.join(immuun_roles)
+        role_names = '\n - '.join(immuun_roles)
         await interaction.response.send_message(f"Sorry {interaction.user.mention}. Elise told me that im not allowed to kick people with the following roles: \n *{role_names}*")
         return
       
