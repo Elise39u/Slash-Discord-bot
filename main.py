@@ -21,6 +21,7 @@ from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 from messageFolder.messages.DadJokes import onJoke
+from youtube.youtube import checkforVideos
 
 activity = discord.Activity(type=discord.ActivityType.playing,
                             name="With Elise in the Arcades")
@@ -34,7 +35,8 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.10d has arrived", color=65463)
+  checkforVideos.start(client)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
