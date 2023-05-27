@@ -6,6 +6,9 @@ from discord import app_commands
 from discord.ext import commands, tasks
 import server_
 import os
+from moderation.updateMessage import UpdateMessage
+from moderation.deleteMessage import DeleteMessage
+from moderation.kickUser import OnKick
 from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
@@ -17,11 +20,11 @@ from messageFolder.messages.Choices import chooseAnswer
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
+from messageFolder.messages.DadJokes import onJoke
+from youtube.youtube import checkforVideos
 
-
-
-activity = discord.Activity(type=discord.ActivityType.watching,
-                            name="The Arcades")
+activity = discord.Activity(type=discord.ActivityType.playing,
+                            name="With Elise in the Arcades")
 my_secret = os.environ['TOKEN']
 intents = discord.Intents.all()
 client = discord.Client(intents=intents, activity=activity)
@@ -32,7 +35,8 @@ GUILD_ID = 699557641818734634
 async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.0.6 has arrived", color=65463)
+  checkforVideos.start(client)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -43,6 +47,17 @@ def is_authorized(user):
     return False
 
 
+@client.event
+async def on_message_edit(beforeMessage, afterMessage):
+    await UpdateMessage(client, beforeMessage, afterMessage)
+
+@client.event
+async def on_message_delete(message):
+    if message.author == client.user:
+        return
+    else:
+        await DeleteMessage(message, client)
+      
 @tree.command(name = "ping", description = "Wanna ping pong or see my ms", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
   await interaction.response.send_message('Pong! Is my ping good enough or too high UwU? **{0}ms**'.format(client.latency, 1))
@@ -104,14 +119,20 @@ async def owoText(interaction, message: str):
 
 @tree.command(name = "testgifs", description = "A command for Elise to test stuff with me here in the arcade", guild=discord.Object(id=GUILD_ID))
 async def gifTest(interaction):
-  meCheck = is_authorized(interaction.user)
-  if meCheck: 
-    await testGiffies(interaction)
+  await testGiffies(interaction)
 
 @tree.command(name = "choice", description = "Choose between 2 options", guild=discord.Object(id=GUILD_ID))
 async def choice(interaction, choice1: str, choice2: str):
   await chooseAnswer(interaction, choice1, choice2)
 
+@tree.command(name = "kick", description = "Kick a user from the guild", guild=discord.Object(id=GUILD_ID))
+async def kickUser(interaction, user: discord.Member, reason: str):
+  await OnKick(interaction, reason, client, user)
+
+@tree.command(name = "dadjoke", description = "Wanna hear a joke :)", guild=discord.Object(id=GUILD_ID))
+async def jokeGetter(interaction):
+  await onJoke(interaction, client)
+  
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:
@@ -120,14 +141,6 @@ async def setup_roles():
         name=role_item,
         hoist=True
       )
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
 
 #Check if a member has left or joined the guild
