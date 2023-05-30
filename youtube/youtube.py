@@ -7,7 +7,10 @@ from messageFolder.helpers.EmbedBuilder import BuildEmbed
 import discord
 import logging
 from discord.ext import tasks
-  
+
+# Specify the name of the playlist to check for
+playlist_name = 'Elise pregnancy era'
+
 # Configure logging
 logging.basicConfig(level=logging.ERROR)  # Set the logging level to ERROR
 
@@ -49,7 +52,7 @@ async def checkforVideos(client):
               await error_channel.send(f"Also here is the link mommy :): {tryed_link}")
 
         if not str(data[youtube_channel]["latest_video_url"]) == latest_video_url:
-          
+
           #chaning the last video url
           data[str(youtube_channel)]["latest_video_url"] = latest_video_url
   
@@ -65,7 +68,7 @@ async def checkforVideos(client):
           url = "https://www.youtube.com/oembed"
           query_string = urllib.parse.urlencode(parmas)
           url = url + "?" + query_string
-          
+
           with urllib.request.urlopen(url) as response:
             response_text = response.read()
             youtubeVidData = json.loads(response_text.decode())
@@ -133,16 +136,21 @@ def get_vid_title(youtube_vid_data):
         return "<@&934500064364216390> <@203095887264743424> has uploaded a lets play video. Go check it out 💜"
 
 def get_embed_details(youtube_vid_data):
-    title = youtube_vid_data["title"]
-    if "Cover" in title:
-        return title, "🎀 You know that Miku tries to teach Elise to sing from time to time. How do we test if Elise can sing well a v-singer career? My sources tell me they practiced a Vocaloid song and gave it an English jacket. Care what Elise sung this time? Click the title of the embed and check it out 🎀"
-    elif "EGS" in title:
-        return title, "🎀 Elise would love to have an open community where you can discuss gender thoughts and preferences. She hopes to give courage to someone else by stepping up as the first to talk. See how Elise dealt with some stuff in her transgender life. Check it out by clicking on the title above 🎀"
-    elif "Perfect" in title or "Divaroadmap" in title:
-        return title, "🎀 Elise has uploaded a new project diva video. Care to see if she got a perfect or got a new divaroadmap? See what happens by checking the title of the embed 🎀"
-    elif "Megamix" in title or "AFT" in title or "Diva" in title or "Future tone" in title:
-        return title, "🎀 Elise recently streamed a project diva game on her Twitch. After downloading and maybe a little bit of editing, it's finally uploaded to her vods channel. Interested to see what happens in the stream? Click the title of the embed 🎀"
-    elif "Stream" in title:
-        return title, "🎀 Elise recently streamed something, but it's hard to tell what. Well, here's an upload, so after downloading and maybe a little bit of editing, it's finally uploaded to her vods channel. Interested to see what happens in the stream? Click the title of the embed 🎀"
-    else:
-        return title, "🎀 Elise has uploaded a new lets play video. Is it horror or a fun lets play video? Well, it's hard to tell, but there's a new upload. Care to check it out? Click on the title to watch the video. 🎀"
+    #find a way to check for the elise pregnancy era playlist
+    #is_in_playlist = check_video_in_playlist(latest_video_url, api_key, playlist_name)
+    #if is_in_playlist: 
+      #return "🎀 <@&934500064364216390> <@203095887264743424> i saw a new youtube upload of your preggie vtuber girl Elise. Its been a weird time for her i know. But she enjoys the pregnancy with Elif while it last. 🎀", "🎀 After 3 scary games 89 something weird happend for Elise. She founded out that she got a baby bump. Apprently she is expecting a child from her boyfriend Elif. So pregnant but does that mean our pregnant vtuber girl is not gonna upload anymore and take some rest? Nope that is why i saw our pregnant girl upload a video. You can watch Elises video by clicking the title of the embed. As said she really enjoys the pregnancy with her Boyfriend."
+      
+  title = youtube_vid_data["title"]
+  if "Cover" in title:
+    return title, "🎀 You know that Miku tries to teach Elise to sing from time to time. How do we test if Elise can sing well a v-singer career? My sources tell me they practiced a Vocaloid song and gave it an English jacket. Care what Elise sung this time? Click the title of the embed and check it out 🎀"
+  elif "EGS" in title:
+    return title, "🎀 Elise would love to have an open community where you can discuss gender thoughts and preferences. She hopes to give courage to someone else by stepping up as the first to talk. See how Elise dealt with some stuff in her transgender life. Check it out by clicking on the title above 🎀"
+  elif "Perfect" in title or "Divaroadmap" in title:
+    return title, "🎀 Elise has uploaded a new project diva video. Care to see if she got a perfect or got a new divaroadmap? See what happens by checking the title of the embed 🎀"
+  elif "Megamix" in title or "AFT" in title or "Diva" in title or "Future tone" in title:
+    return title, "🎀 Elise recently streamed a project diva game on her Twitch. After downloading and maybe a little bit of editing, it's finally uploaded to her vods channel. Interested to see what happens in the stream? Click the title of the embed 🎀"
+  elif "Stream" in title:
+    return title, "🎀 Elise recently streamed something, but it's hard to tell what. Well, here's an upload, so after downloading and maybe a little bit of editing, it's finally uploaded to her vods channel. Interested to see what happens in the stream? Click the title of the embed 🎀"
+  else:
+    return title, "🎀 Elise has uploaded a new lets play video. Is it horror or a fun lets play video? Well, it's hard to tell, but there's a new upload. Care to check it out? Click on the title to watch the video. 🎀"
