@@ -35,9 +35,19 @@ async def checkforVideos(client):
         
         try:
           latest_video_url = "https://www.youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
-        except:
-          continue
+        except Exception as e:
+          # Log other general exceptions
+          logging.error(f"Error found during try to gain the latetst_video_url: {e}")
+          tryed_link = "https://www.youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
   
+          # Get the error channel
+          error_channel = client.get_channel(error_channel_id)
+          if error_channel:
+              # Send the error message to the error channel  
+              await error_channel.send("https://cdn.discordapp.com/attachments/709057115159003156/1109789108722741389/909558100162379877.gif")
+              await error_channel.send(f"<@203095887264743424> Halp Mommy Elise. I got an error while trying to find your videos: **{e}**")
+              await error_channel.send(f"Also here is the link mommy :): {tryed_link}")
+
         if not str(data[youtube_channel]["latest_video_url"]) == latest_video_url:
           
           #chaning the last video url
