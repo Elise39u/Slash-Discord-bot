@@ -1,6 +1,7 @@
 import discord
 logging_channel_id = 822837640872067082
-allowed_roles = ["Diamond Diva Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"]  # List of imuun role names
+# List of imuun role names
+allowed_roles = ["Diamond Diva Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
 
 async def OnKick(interaction, message, client, user):
   try:

@@ -21,6 +21,7 @@ from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 from messageFolder.messages.DadJokes import onJoke
+from messageFolder.messages.Clapify import clapClapClap
 from youtube.youtube import checkforVideos
 
 activity = discord.Activity(type=discord.ActivityType.playing,
@@ -36,7 +37,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -132,7 +133,11 @@ async def kickUser(interaction, user: discord.Member, reason: str):
 @tree.command(name = "dadjoke", description = "Wanna hear a joke :)", guild=discord.Object(id=GUILD_ID))
 async def jokeGetter(interaction):
   await onJoke(interaction, client)
-  
+
+@tree.command(name = "clapify", description = "Time to clap.", guild=discord.Object(id=GUILD_ID))
+async def clapify(interaction, sentence: str):
+  await clapClapClap(interaction, sentence, client)
+
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:
