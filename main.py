@@ -24,8 +24,8 @@ from messageFolder.messages.DadJokes import onJoke
 from messageFolder.messages.Clapify import clapClapClap
 from youtube.youtube import checkforVideos
 
-activity = discord.Activity(type=discord.ActivityType.playing,
-                            name="With Elise in the Arcades")
+activity = discord.Activity(type=discord.ActivityType.watching,
+                            name="Pregnant Elise ")
 my_secret = os.environ['TOKEN']
 intents = discord.Intents.all()
 client = discord.Client(intents=intents, activity=activity)
@@ -37,7 +37,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1a has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 

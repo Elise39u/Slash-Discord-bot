@@ -122,7 +122,9 @@ async def checkforVideos(client):
 
 def get_vid_title(youtube_vid_data):
     title = youtube_vid_data["title"]
-    if "Cover" in title:
+    if "(Preggo)" in title:
+      return "🎀 <@&934500064364216390> <@203095887264743424> Your preggo vtuber girl has uploaded a new stream to her channel 💜💜"
+    elif "Cover" in title:
         return " 🎀 <@&934500064364216390> <@203095887264743424> Uploaded a new English cover to her Channel 💜🎀"
     elif "EGS" in title:
         return " 🎀 <@&934500064364216390> <@203095887264743424> has uploaded a Gender story in the form of a project diva video 💜🎀"
@@ -142,7 +144,9 @@ def get_embed_details(youtube_vid_data):
       #return "🎀 <@&934500064364216390> <@203095887264743424> i saw a new youtube upload of your preggie vtuber girl Elise. Its been a weird time for her i know. But she enjoys the pregnancy with Elif while it last. 🎀", "🎀 After 3 scary games 89 something weird happend for Elise. She founded out that she got a baby bump. Apprently she is expecting a child from her boyfriend Elif. So pregnant but does that mean our pregnant vtuber girl is not gonna upload anymore and take some rest? Nope that is why i saw our pregnant girl upload a video. You can watch Elises video by clicking the title of the embed. As said she really enjoys the pregnancy with her Boyfriend."
       
   title = youtube_vid_data["title"]
-  if "Cover" in title:
+  if "(Preggo)" in title:
+    return title, "🎀 Your pregnant girl Elise has uploaded a new stream to her channel. For now its hard to see what she uploaded. But wanna catch up with what your Preggo Mommy Elise streamed? Click the title and check it out. She really appreciate it if you support her in this time with Elif. She enjoys carrying Elif his child and bening pregnant. But she told me she still has some fear for what is up ahead. 🎀"
+  elif "Cover" in title:
     return title, "🎀 You know that Miku tries to teach Elise to sing from time to time. How do we test if Elise can sing well a v-singer career? My sources tell me they practiced a Vocaloid song and gave it an English jacket. Care what Elise sung this time? Click the title of the embed and check it out 🎀"
   elif "EGS" in title:
     return title, "🎀 Elise would love to have an open community where you can discuss gender thoughts and preferences. She hopes to give courage to someone else by stepping up as the first to talk. See how Elise dealt with some stuff in her transgender life. Check it out by clicking on the title above 🎀"
