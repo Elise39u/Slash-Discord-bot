@@ -25,7 +25,7 @@ from messageFolder.messages.Clapify import clapClapClap
 from youtube.youtube import checkforVideos
 
 activity = discord.Activity(type=discord.ActivityType.watching,
-                            name="Pregnant Elise ")
+                            name="your pregnant Elise")
 my_secret = os.environ['TOKEN']
 intents = discord.Intents.all()
 client = discord.Client(intents=intents, activity=activity)

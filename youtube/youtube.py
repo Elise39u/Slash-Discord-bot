@@ -145,7 +145,7 @@ def get_embed_details(youtube_vid_data):
       
   title = youtube_vid_data["title"]
   if "(Preggo)" in title:
-    return title, "🎀 Your pregnant girl Elise has uploaded a new stream to her channel. For now its hard to see what she uploaded. But wanna catch up with what your Preggo Mommy Elise streamed? Click the title and check it out. She really appreciate it if you support her in this time with Elif. She enjoys carrying Elif his child and bening pregnant. But she told me she still has some fear for what is up ahead. 🎀"
+    return title, "🎀 Your pregnant girl Elise has uploaded a new stream to her channel. For now its hard to see what she uploaded. But wanna catch up with what your Preggo Mommy Elise streamed? Click the title and check it out. She really appreciate it if you support her in this time with Elif. She enjoys carrying Elif his child and bening pregnant. But she told me she still has some fear for what is up ahead. So do you support your pregnant girl in this time?🎀"
   elif "Cover" in title:
     return title, "🎀 You know that Miku tries to teach Elise to sing from time to time. How do we test if Elise can sing well a v-singer career? My sources tell me they practiced a Vocaloid song and gave it an English jacket. Care what Elise sung this time? Click the title of the embed and check it out 🎀"
   elif "EGS" in title:
