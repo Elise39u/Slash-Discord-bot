@@ -1,4 +1,5 @@
 🎀 /Help --> Shows this message 
 🎀 /108 --> Gives you a link to the secrets of project diva 
 🎀 /Avatar --> Get a avatar from a sekai visitor of your own
-🎀 /Help --> Gain a new color role based on the sekais of project Sekai. *Roles are the names of the project sekai groups.*
+🎀 /Sekairoles --> Gain a new color role based on the sekais of project Sekai. *Roles are the names of the project sekai groups.*
+🎀 /serverinfo --> Wanna get some information on elise her arcade sekai

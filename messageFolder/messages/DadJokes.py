@@ -6,7 +6,7 @@ async def onJoke(interaction, client):
   jokeData = response.json();
   if(jokeData['status'] == 200):
     jokeEmbed = discord.Embed(color=6331378)
-    jokeEmbed.add_field(name="Joke", value=jokeData['joke'], inline=False)
+    jokeEmbed.add_field(name="Dad Joke", value=jokeData['joke'], inline=False)
     await interaction.response.send_message(embed=jokeEmbed)
   else:
     await ErrorHandeling(interaction, jokeData['status'], client)

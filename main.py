@@ -22,6 +22,7 @@ from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
 from messageFolder.messages.DadJokes import onJoke
 from messageFolder.messages.Clapify import clapClapClap
+from messageFolder.server.ServerInfo import GetServerInfo
 from youtube.youtube import checkforVideos
 
 activity = discord.Activity(type=discord.ActivityType.watching,
@@ -37,7 +38,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1a has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1b has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -137,6 +138,10 @@ async def jokeGetter(interaction):
 @tree.command(name = "clapify", description = "Time to clap.", guild=discord.Object(id=GUILD_ID))
 async def clapify(interaction, sentence: str):
   await clapClapClap(interaction, sentence, client)
+
+@tree.command(name = "serverinfo", description = "Wanna get some sekai information :)", guild=discord.Object(id=GUILD_ID))
+async def serverinfo(interaction):
+  await GetServerInfo(interaction, client)
 
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
