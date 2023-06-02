@@ -8,8 +8,9 @@ async def GetServerInfo(interaction, client):
         # Retrieving server information
         server_icon = server.icon
         server_owner = server.owner
-        date_created = server.created_at.strftime("%Y-%m-%d")
+        date_created = server.created_at.strftime("%Y-%m-%d %H:%M:%S")
         member_count = server.member_count
+        server_roles = len(server.roles)
         channel_count = len(server.channels)
       
         serverInfoEmbed = discord.Embed(title="Arcade Sekai Information", color=6331378)
@@ -19,6 +20,7 @@ async def GetServerInfo(interaction, client):
         serverInfoEmbed.add_field(name="Date Created", value=date_created)
         serverInfoEmbed.add_field(name="Member Count", value=member_count)
         serverInfoEmbed.add_field(name="Channel Count", value=channel_count)
+        serverInfoEmbed.add_field(name="Roles Count", value=server_roles)
 
         await interaction.response.send_message(embed=serverInfoEmbed)
     
