@@ -1,6 +1,5 @@
 import discord
 
-
 async def BuildEmbed(message, embedTitle, embedDescription, imageUrl, colour,
                      footer, channel, url):
     newEmbed = discord.Embed(title=embedTitle, description=embedDescription)

@@ -8,7 +8,7 @@ async def GetServerInfo(interaction, client):
         # Retrieving server information
         server_icon = server.icon
         server_owner = server.owner
-        date_created = server.created_at.strftime("%Y-%m-%d %H:%M:%S")
+        date_created = server.created_at.strftime("%Y-%m-%d %H:%M")
         member_count = server.member_count
         server_roles = len(server.roles)
         channel_count = len(server.channels)

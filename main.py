@@ -9,6 +9,8 @@ import os
 from moderation.updateMessage import UpdateMessage
 from moderation.deleteMessage import DeleteMessage
 from moderation.kickUser import OnKick
+from moderation.banUser import OnBan
+#from moderation.banUser import on_button_click
 from messageFolder.messages.HelpCommand import helpCommand
 from messageFolder.messages.EliseGenderStory import EliseGenderStory
 from messageFolder.messages.Socials import Socials
@@ -131,6 +133,10 @@ async def choice(interaction, choice1: str, choice2: str):
 async def kickUser(interaction, user: discord.Member, reason: str):
   await OnKick(interaction, reason, client, user)
 
+@tree.command(name = "ban", description = "Ban a user from the guild", guild=discord.Object(id=GUILD_ID))
+async def banUser(interaction, user: discord.Member, reason: str):
+  await OnBan(interaction, reason, client, user)
+  
 @tree.command(name = "dadjoke", description = "Wanna hear a joke :)", guild=discord.Object(id=GUILD_ID))
 async def jokeGetter(interaction):
   await onJoke(interaction, client)
