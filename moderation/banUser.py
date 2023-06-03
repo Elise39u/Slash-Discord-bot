@@ -1,7 +1,7 @@
 import discord
 
 logging_channel_id = 822837640872067082
-imuun_roles_guild = ["Diamond Diva Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
+imuun_roles_guild = ["Preggo Diamond Diva Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
 
 class BanButton(discord.ui.Button):
     def __init__(self, user, message, client, **kwargs):
