@@ -19,6 +19,7 @@ from messageFolder.messages.UserAvatar import getUserAvatar
 from messageFolder.messages.RoleMenu import AddRole
 from messageFolder.messages.OwO import text_to_owo
 from messageFolder.messages.Choices import chooseAnswer
+from messageFolder.messages.EightBall import EightBallResponse
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -40,7 +41,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.1b has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -148,6 +149,10 @@ async def clapify(interaction, sentence: str):
 @tree.command(name = "serverinfo", description = "Wanna get some sekai information :)", guild=discord.Object(id=GUILD_ID))
 async def serverinfo(interaction):
   await GetServerInfo(interaction, client)
+
+@tree.command(name = "8ball", description = "Want an anwser from the 🎱", guild=discord.Object(id=GUILD_ID))
+async def EightBall(interaction, message: str):
+  await EightBallResponse(interaction, message, client)
 
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']

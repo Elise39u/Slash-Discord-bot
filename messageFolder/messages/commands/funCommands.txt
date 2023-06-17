@@ -1,6 +1,7 @@
 🎀 /summer_idol --> See why Elise loves summer idol so much
 🎀 /Vocaloid_pun --> get a random vocaloid pun from the sekais, in here or a pun from Elise
 🎀 /OwO --> OwOfy your given text by me
-🎀 /choice --> let the bot decided for you between 2 choices. *Requires 2 options to be given*
+🎀 /choice --> let the bot decided for you between 2 choices.
 🎀 /dadjoke --> You wanna hear a funny joke from me?
-🎀 /clapify --> 👏 its 👏 time 👏 to 👏 clap 👏 people 👏 *Requires a sentence to be given*
+🎀 /clapify --> 👏 its 👏 time 👏 to 👏 clap 👏 people 👏 
+🎀 /8ball --> Get an response from the 🎱 

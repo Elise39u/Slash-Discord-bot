@@ -1,7 +1,7 @@
 import discord
 
 logging_channel_id = 822837640872067082
-imuun_roles_guild = ["Preggo Diamond Diva Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
+imuun_roles_guild = ["PregnaDiva Serenade Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
 
 class BanButton(discord.ui.Button):
     def __init__(self, user, message, client, **kwargs):
@@ -13,6 +13,8 @@ class BanButton(discord.ui.Button):
       self.client = client
       self.id = user.id
 
+    #Maby an idea to give the interaction.user.id of the command to the button 
+    #And compare that to the interaction.user.id 
     async def callback(self, interaction: discord.Interaction):
       #print(interaction.user.id)
       #print(self.id)
