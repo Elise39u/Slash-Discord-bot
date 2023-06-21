@@ -20,6 +20,8 @@ from messageFolder.messages.RoleMenu import AddRole
 from messageFolder.messages.OwO import text_to_owo
 from messageFolder.messages.Choices import chooseAnswer
 from messageFolder.messages.EightBall import EightBallResponse
+from messageFolder.messages.EnglishSekaiSong import EnglishArcade
+from messageFolder.messages.SekaiSongs import ArcadeSongs
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -41,7 +43,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2a has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -154,6 +156,14 @@ async def serverinfo(interaction):
 async def EightBall(interaction, message: str):
   await EightBallResponse(interaction, message, client)
 
+@tree.command(name = "arcadeensongs", description = "A command to see what Elise has coverd in Enlgish here in the arcade sekai", guild=discord.Object(id=GUILD_ID))
+async def ArcadeEnSongs(interaction):
+  await EnglishArcade(interaction)
+
+@tree.command(name = "arcadesongs", description = "Upcoming plans for your pregnant girl and japanse covers", guild=discord.Object(id=GUILD_ID))
+async def sekaisongs(interaction):
+  await ArcadeSongs(interaction)
+  
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:

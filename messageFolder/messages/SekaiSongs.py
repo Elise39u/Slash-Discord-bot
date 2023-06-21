@@ -1,0 +1,4 @@
+from ..helpers import EmbedBuilder
+
+async def ArcadeSongs(interaction):
+  await EmbedBuilder.BuildEmbed(interaction, "Upcomoing Japanse covers", "Look Elise is pregnant and all i know as Arcade Miku. But i heared some stuff you might find interesting. You know even while she is pregnant she is still keeping training and trying to covering songs \n\n So What will come then because you have heared her sing before. I heared plans for Japanse covers. So whats coming up is as followed or what i heared from converstations with your pregnant girl: \n\n - Time machine\n - Karurki pierrot", "https://s1.zerochan.net/Leo.need.600.3603025.jpg", None, "🎀 Cover List coming up 🎀", None, "")
