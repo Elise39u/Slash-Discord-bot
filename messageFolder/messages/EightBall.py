@@ -27,27 +27,27 @@ async def EightBallResponse(interaction, question, client):
   ]
   
   pregnant_girl_responses = [
-        "🌟 It is certain that your journey as a pregnant trans girl will bring joy and fulfillment. ✨",
-        "🌈 Without a doubt, being a pregnant trans girl will open up new avenues of self-discovery. 🌱",
-        "🎨 Reply hazy, but your creativity in content creation during this phase will shine through. 🖌️",
-        "🎵 Cannot predict now, but your project diva skills will continue to captivate your audience. 🎶",
-        "🌺 Don't count on it, focus on self-care during your pregnancy as a trans girl. 🌿",
-        "💔 My sources say no, take some time off from content creation to prioritize your well-being. 🛀",
-        "💫 Signs point to yes, your unique perspective as a pregnant trans girl will resonate with many. 💖",
-        "⏳ Ask again later, for now, enjoy playing Project Diva and nurturing yourself. 🎮",
-        "💡 Outlook good, use this time as a pregnant trans girl to explore new content creation ideas. 🌟",
-        "🌙 Better not tell you now, but your passion for Project Diva will continue to inspire you. 🎵",
-        "🌟 Most likely, your experiences as a pregnant trans girl will lead to personal growth and success. 💪",
-        "🌈 It is decidedly so, embrace your journey and let it influence your creative projects. 🌟",
-        "🌸 Yes, definitely! Let your identity as a pregnant trans girl shine in your content creation. 🌈",
-        "❌ My reply is no, take a break from Project Diva and focus on self-reflection. 🧘",
-        "🌟 You may rely on it, your path as a pregnant trans girl will be filled with opportunities. 🌟",
-        "⏰ Ask again later, but don't forget to express yourself authentically in your projects. 📝",
-        "❗ Outlook not so good, take some time off from content creation to rest and recharge. 🌙",
-        "💖 Signs point to a fruitful journey as a pregnant trans girl, incorporating Project Diva along the way. 🌸",
-        "🎯 Concentrate and ask again, find balance between your pregnancy and content creation endeavors. ✨",
-        "🌈 Yes, definitely! Your passion for Project Diva will fuel your creative output during this phase. 🎶"
-    ]
+    "👍 It is certain, mama-to-be! 🤰",
+    "🎱 It is decidedly so, a beautiful journey awaits! 🌈",
+    "🔮 Without a doubt, you're glowing with joy! ✨",
+    "🌟 Yes, definitely! Your journey is unique and amazing! 🌈",
+    "✨ You may rely on it, mama! Trust your instincts! 🌸",
+    "💫 As I see it, yes! Embrace this magical chapter! 🌙",
+    "👌 Most likely, darling! You've got this! 🌺",
+    "🔍 Outlook good, mama! The future looks bright! 🌞",
+    "🌈 Yes, absolutely! Your baby is a precious gift! 🌷",
+    "🤞 Signs point to yes, mama! Exciting times lie ahead! 🌼",
+    "🙌 Reply hazy, try again later, but trust your journey! 🌈",
+    "⏳ Ask again later, as this is a time of change and growth! 🌸",
+    "🤔 Better not tell you now, but trust your heart! ❤️",
+    "🙃 Cannot predict now, but enjoy the surprises along the way! 🌟",
+    "❌ Concentrate and ask again, trust your intuition! 💫",
+    "😕 Don't count on it, but stay positive and hopeful! 🌈",
+    "🚫 My reply is no, but don't lose hope, miracles happen! 🌺",
+    "🔒 My sources say no, but remember, love conquers all! ❤️",
+    "🙅‍♀️ Outlook not so good, but your strength will carry you through! 🌟",
+    "❗ Very doubtful, but believe in your resilience, mama! 🌸"
+  ]
   try:
       if interaction.user.id == EliseId:
         EightBallEmebed = discord.Embed(color=6331378)
