@@ -29,7 +29,7 @@ async def helpCommand(user, interaction):
   user_roles = [role.id for role in user.roles]
   added_roles = set()  # Set to keep track of added roles
   
-  helpEmbed = discord.Embed(title="Commands in the Girly Gamer Arcade", description="You have access to the following commands. If you have any suggestions make sure to contact @Hatsune Elise#0071", color=6331378)
+  helpEmbed = discord.Embed(title="Commands in the Girly Gamer Arcade", description="You have access to the following commands. If you have any suggestions make sure to contact @hatsuneelise", color=6331378)
   helpEmbed.set_author(name="Command List", icon_url="https://cdn.discordapp.com/attachments/491904770236481549/1093854438566924509/hatsune-miku-sleeping-sitting-twintails-wallpaper-preview.jpg")
   helpEmbed.set_footer(text="🎀 Im gonna hit Elise :-} 🎀")
   helpEmbed.set_image(url=EmbedImage)

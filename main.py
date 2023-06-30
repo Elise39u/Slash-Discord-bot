@@ -23,6 +23,8 @@ from messageFolder.messages.EightBall import EightBallResponse
 from messageFolder.messages.EnglishSekaiSong import EnglishArcade
 from messageFolder.messages.SekaiSongs import ArcadeSongs
 from messageFolder.messages.Lore import LoreExplained
+from messageFolder.messages.ElifLore import ElifLoreExplained
+from messageFolder.messages.ArcadeLore import ArcadeLoreExplained
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -44,7 +46,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2b has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2c has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -168,6 +170,14 @@ async def sekaisongs(interaction):
 @tree.command(name = "lore", description = "Ever wondered how the pregnant Elise her lore worked. Here is an guide", guild=discord.Object(id=GUILD_ID))
 async def loreexplained(interaction):
   await LoreExplained(interaction)
+
+@tree.command(name = "boyfriendlore", description = "Short version of my boyfriends lore on how i met him", guild=discord.Object(id=GUILD_ID))
+async def ElifLore(interaction):
+  await ElifLoreExplained(interaction)
+
+@tree.command(name = "arcadelore", description = "Short version of the girly gamer sekai", guild=discord.Object(id=GUILD_ID))
+async def ArcadeLore(interaction):
+  await ArcadeLoreExplained(interaction)
   
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
