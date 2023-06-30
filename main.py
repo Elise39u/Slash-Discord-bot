@@ -25,6 +25,7 @@ from messageFolder.messages.SekaiSongs import ArcadeSongs
 from messageFolder.messages.Lore import LoreExplained
 from messageFolder.messages.ElifLore import ElifLoreExplained
 from messageFolder.messages.ArcadeLore import ArcadeLoreExplained
+from messageFolder.messages.PregnantLore import PregnantLoreExplained
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -46,7 +47,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.2c has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.3 has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -178,7 +179,12 @@ async def ElifLore(interaction):
 @tree.command(name = "arcadelore", description = "Short version of the girly gamer sekai", guild=discord.Object(id=GUILD_ID))
 async def ArcadeLore(interaction):
   await ArcadeLoreExplained(interaction)
-  
+
+@tree.command(name = "pregnantlore", description = "Short version of what we know about my pregnancy. Im currently 2 months pregnant when i typed this", guild=discord.Object(id=GUILD_ID))
+async def PregnantLore(interaction):
+  await PregnantLoreExplained(interaction)
+
+
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
   for role_item in role_names:
