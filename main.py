@@ -26,6 +26,7 @@ from messageFolder.messages.Lore import LoreExplained
 from messageFolder.messages.ElifLore import ElifLoreExplained
 from messageFolder.messages.ArcadeLore import ArcadeLoreExplained
 from messageFolder.messages.PregnantLore import PregnantLoreExplained
+from messageFolder.messages.GuildIcon import getGuildIcon
 from messageFolder.messages.OwnerTest import testGiffies
 from messageFolder.server.ServerLeave import onMemberLeave
 from messageFolder.server.ServerJoin import onMemberJoin
@@ -47,7 +48,7 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=699557641818734634))
   channel = client.get_channel(822837640872067082)
   checkforVideos.start(client)
-  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.3 has arrived", color=65463)
+  AliveEmbed = discord.Embed(description="生きてる 初音エリーゼ!! Gamer miku 1.1.3a has arrived", color=65463)
   await setup_roles()
   await channel.send(embed=AliveEmbed)
 
@@ -184,6 +185,9 @@ async def ArcadeLore(interaction):
 async def PregnantLore(interaction):
   await PregnantLoreExplained(interaction)
 
+@tree.command(name = "guildicon", description = "Get the servers icon if your interesed", guild=discord.Object(id=GUILD_ID))
+async def GuildIcon(interaction):
+  await getGuildIcon(interaction, client)
 
 async def setup_roles():
   role_names = ['🎵 Virtual Singer', '🎸 Leo/Need', '🎼 More More Jump', '☕ Vivid Bad Squad', '🎡 Wonderlands X Showtime', '💻 Nightcord 25:00']
