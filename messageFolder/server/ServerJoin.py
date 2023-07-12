@@ -8,5 +8,5 @@ async def onMemberJoin(member, client):
   channel = client.get_channel(797789187910664193)
   role = member.guild.get_role(699572966551322635)
   await channel.send("{0.mention} Welcome to Elise Her Arcade Sekai. Also know as the Gamer Girl Sekai. I hope you have a pleasent stay".format(member))
-  await EmbedBuilder.BuildEmbed(None, "🎀 Welcome to the Arcade garden in the Sekai🎀", "Before i start, i do have to say a few things. 💖 \n <#703637751274143854> <-- Channel where you can find the rules of the server 🎀 \n <#797792369416208386>  <-- For some information on the server 🎀 \n <#699557641818734638> <-- Main  chat 🎀 \n  <#709050194662260797> <-- channel for some roles  🎀 \n <#962632709405032458> <-- Introduction about me if your interested 🎀💙", imageUrl, 6331378, "🎀 Welcome to the gamer girl sekai 🎀", channel, None)
+  await EmbedBuilder.BuildEmbed(None, "🎀 Welcome to the Arcade garden in the Sekai🎀", "Before i start, i do have to say a few things. 💖 \n <#703637751274143854> <-- Channel where you can find the rules of the server 🎀 \n <#797792369416208386>  <-- For some information on the server 🎀 \n <#699557641818734638> <-- Main  chat 🎀 \n <#962632709405032458> <-- Introduction about me if your interested 🎀💙", imageUrl, 6331378, "🎀 Welcome to the gamer girl sekai 🎀", channel, None)
   await member.add_roles(role)
