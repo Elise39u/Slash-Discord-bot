@@ -4,42 +4,36 @@ logging_channel_id = 822837640872067082
 imuun_roles_guild = ["PregnaDiva Serenade Elise", "Sweetie Miku 💖", "Vocaloids", "Game guardians"] 
 
 class BanButton(discord.ui.Button):
-    def __init__(self, user, message, client, **kwargs):
+    def __init__(self, user, message, client, personID, **kwargs):
       label = f"Ban {user}"
       style = discord.ButtonStyle.success
       super().__init__(style=style, label=label, **kwargs)
       self.user = user
       self.message = message  
       self.client = client
-      self.id = user.id
+      self.id = personID
 
-    #Maby an idea to give the interaction.user.id of the command to the button 
-    #And compare that to the interaction.user.id 
     async def callback(self, interaction: discord.Interaction):
-      #print(interaction.user.id)
-      #print(self.id)
-      #if interaction.user.id != self.id:
-        #await interaction.response.send_message("You are not allowed to perform this action.", ephemeral=True)
-        #return
+      if interaction.user.id != self.id:
+        await interaction.response.send_message("You are not allowed to perform this action.", ephemeral=True)
+        return
       
       await interaction.message.delete()
       await banUser(interaction, self.client, self.message, self.user)
       #await interaction.response.send_message(f"Are you sure you want to ban {self.user.mention} for **{self.message}**?")
 
 class CancelBanButton(discord.ui.Button):
-    def __init__(self, user, **kwargs):
+    def __init__(self, user, personID, **kwargs):
         label = f"Cancel ban on {user}"
         style = discord.ButtonStyle.danger
         super().__init__(style=style, label=label, **kwargs)
         self.user = user
-        self.id = user.id
+        self.id = personID
 
     async def callback(self, interaction: discord.Interaction):
-      #print(interaction.user.id)
-      #print(self.id)
-      #if interaction.user.id != self.id:
-        #await interaction.response.send_message("You are not allowed to perform this action.", ephemeral=True)
-        #return 
+      if interaction.user.id != self.id:
+        await interaction.response.send_message("You are not allowed to perform this action.", ephemeral=True)
+        return 
         
       await interaction.response.send_message(f"Ban canceled for {self.user.mention}.")
       await interaction.message.delete()
@@ -59,8 +53,8 @@ async def OnBan(interaction, message, client, user):
         await interaction.response.send_message(f"Nice try {interaction.user.mention}. But Mommy Elise made me so that I can't ban myself :P NENENENE <:slowpoke:875806601804677240>")
         return
 
-    ban_user_button = BanButton(user, message, client)
-    cancel_ban_button = CancelBanButton(user)
+    ban_user_button = BanButton(user, message, client, interaction.user.id)
+    cancel_ban_button = CancelBanButton(user, interaction.user.id)
 
     view = discord.ui.View()
     view.add_item(ban_user_button)

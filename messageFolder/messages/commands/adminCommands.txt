@@ -1,2 +1,2 @@
 🎀 /Kick --> Kicks a user from the guild. Requires a User and Reason to be given along. 
-🎀 /Ban --> Ban someone from the guild. Requires a User and Reason to be given along. *Comes soon to you game gurdians*. *Also its requires a confirmation to prevent accident banning*
+🎀 /Ban --> Ban someone from the guild. Requires a User and Reason to be given along. *Also note that only the one who uses the command can ban*
