@@ -40,6 +40,7 @@ async def checkforVideos(client):
           latest_video_url = "https://www.youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
         except Exception as e:
           # Log other general exceptions
+          print(html)
           logging.error(f"Error found during try to gain the latetst_video_url: {e}")
           tryed_link = "https://www.youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
   
